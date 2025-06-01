@@ -7,8 +7,50 @@
 </head>
 <body>
     <h1>Welcome to My First JavaScript Webpage!</h1>
+	<div id="output"></div>
 
-    <script src="Java.js">  
-    </script>
+  <script>
+    // Helper function for thhe output
+    function write(message) {
+      const div = document.getElementById('output');
+      const p = document.createElement('p');
+      p.textContent = message;
+      div.appendChild(p);
+    }
+
+    // initial Loop
+    for (let i = 0; i <= 10; i++) {
+      if (i % 2 === 0) {
+        write(`Count ${i} is even`);
+      } else {
+        write(`Count ${i} is odd`);
+      }
+    }
+
+    // usetinput
+    let myNum;
+    do {
+      myNum = parseInt(prompt("Enter a number between 5 and 20:"));
+    } while (isNaN(myNum) || myNum < 5 || myNum > 20);
+
+    // Do/while loop for mynum
+    let counter = 1;
+    do {
+      write(`Loop counter: ${counter}`);
+      counter++;
+    } while (counter <= myNum);
+
+    // Array for the subjects
+    const subjects = ["Accounting", "Algebra", "Programming", "Art", "Data Analytics"];
+
+    // Display subjects
+    write("Subjects (listed):");
+    subjects.forEach(function(subject) {
+      write(subject);
+    });
+
+    // Display subjects with comma seperating
+    write("Subjects (comma separated): " + subjects.join(", "));
+  </script>
 </body>
 </html>
