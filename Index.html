@@ -7,53 +7,26 @@
 </head>
 <body>
     <h1>Welcome to My First JavaScript Webpage!</h1>
-	<div id="output"></div>
+
+<div class="dog-message" id="dogMessage">
+    
+  </div>
 
   <script>
-   // Function for service quality
-function validateServiceQuality(quality) {
-  const validQualities = ["great", "ok", "poor"];
-  return validQualities.includes(quality.toLowerCase());
-}
+    // Mydog object
+    let myDog = {
+      name: "Brian Griffin",
+      show: "Family Guy",
+      breed: "Labrador Retriever",
+      mySound: "I may be a dog, but I have better taste in literature and wine than you."
+    };
 
-// Function for amount
-function validateServiceAmount(amount) {
-  return amount >= 5 && amount <= 500;
-}
+    // Message using the object
+    let message = `Hello, my name is ${myDog.name}, when I bark I say: "${myDog.mySound}" I starred in the TV show ${myDog.show}. My character was a ${myDog.breed}. I was the family dog in an animated sitcom about a dysfunctional family in Rhode Island.`;
 
-// Function to calculate the tip based on service
-function calculateTip(amount, quality) {
-  let tipPercent = 0;
+    // Displaying the message
+    document.getElementById("dogMessage").innerText = message;
 
-  switch (quality.toLowerCase()) {
-    case "great":
-      tipPercent = 0.20;
-      break;
-    case "ok":
-      tipPercent = 0.15;
-      break;
-    case "poor":
-      tipPercent = 0.10;
-      break;
-  }
-
-  return amount * tipPercent;
-}
-
-
-let serviceAmount = parseFloat(prompt("Enter the dollar amount of the service (e.g., 50):"));
-let serviceQuality = prompt("Was the service quality 'great', 'ok', or 'poor'?");
-
-if (!validateServiceQuality(serviceQuality)) {
-  alert("Invalid service quality entered. Please refresh and enter 'great', 'ok', or 'poor'.");
-} else if (!validateServiceAmount(serviceAmount)) {
-  alert("Invalid service amount. Please enter a value between $5.00 and $500.00.");
-} else {
-  let tip = calculateTip(serviceAmount, serviceQuality);
-  alert(
-    `For a ${serviceQuality.toLowerCase()} service on $${serviceAmount.toFixed(2)}, the recommended tip is $${tip.toFixed(2)}.`
-  );
-}
 
   </script>
 </body>
