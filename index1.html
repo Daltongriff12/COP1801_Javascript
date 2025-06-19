@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First JavaScript Webpage</title>
+</head>
+<body>
+    <h1>Welcome to My First JavaScript Webpage!</h1>
+
+    <div class="dog-message" id="dogMessage"></div>
+    <div class="all-dogs" id="allDogs"></div>
+    <div class="selected-dog" id="selectedDog"></div>
+
+    <script>
+        // Constructor function
+        function Dog(name, show, breed, mySound, canTalk) {
+            this.name = name;
+            this.show = show;
+            this.breed = breed;
+            this.mySound = mySound;
+            this.canTalk = canTalk;
+
+            this.myGreeting = function() {
+                return `Hello, my name is ${this.name}. ${this.canTalk ? "I can talk!" : "I cannot talk."} When I bark I say: "${this.mySound}" I starred in the TV show ${this.show}. My character was a ${this.breed}.`;
+            };
+        }
+
+        // Create dog objects
+        const brian = new Dog(
+            "Brian Griffin",
+            "Family Guy",
+            "Labrador Retriever",
+            "I may be a dog, but I have better taste in literature and wine than you.",
+            true
+        );
+
+        const scooby = new Dog(
+            "Scooby-Doo",
+            "Scooby-Doo, Where Are You!",
+            "Great Dane",
+            "Ruh-roh!",
+            true
+        );
+
+        const santasLittleHelper = new Dog(
+            "Santa's Little Helper",
+            "The Simpsons",
+            "Greyhound",
+            "*Excited panting*",
+            false
+        );
+
+        // Store dogs in an object
+        const dogs = {
+            "Brian Griffin": brian,
+            "Scooby-Doo": scooby,
+            "Santa's Little Helper": santasLittleHelper
+        };
+
+        // Display each dog's properties using a for in loop
+        let allDogsInfo = "";
+        for (let dogName in dogs) {
+            allDogsInfo += `<strong>${dogName}</strong><br>`;
+            for (let prop in dogs[dogName]) {
+                if (typeof dogs[dogName][prop] !== "function") {
+                    allDogsInfo += `${prop}: ${dogs[dogName][prop]}<br>`;
+                }
+            }
+            allDogsInfo += "<hr>";
+        }
+
+        document.getElementById("allDogs").innerHTML = allDogsInfo;
+
+        // Prompt user to select a dog
+        const userChoice = prompt("Enter a dog's name (e.g., Brian Griffin, Scooby-Doo, or Santa's Little Helper):");
+
+        if (dogs[userChoice]) {
+            document.getElementById("selectedDog").innerText = dogs[userChoice].myGreeting();
+        } else {
+            document.getElementById("selectedDog").innerText = "Sorry, the dog you selected does not exist in our database.";
+        }
+
+     
+    </script>
+</body>
+</html>
